@@ -1,5 +1,5 @@
 <div align="center">
-<img src="doc/pictures/ember_banner_color.jpg"/>
+<img src="doc/pictures/ember_banner_color.png"/>
 </div>
 
 ---
