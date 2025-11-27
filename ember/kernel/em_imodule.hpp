@@ -4,23 +4,23 @@
 #include "em_iobject.hpp"
 #include "em_isaboteur.hpp"
 
-namespace ember {
+namespace ember
+{
 
 // Primitive Unit Interface
 class IModule : public IObject
 {
-protected:
-    IModule() { }
+  protected:
+    IModule () {}
 
-public:
-
+  public:
     // Core Routines
-    virtual void update() = 0;
-    virtual void eval() = 0;
-    virtual std::vector<ISaboteur*> getSaboteurs() = 0;
-    virtual void reset() = 0;
+    virtual void update () = 0;
+    virtual void eval () = 0;
+    virtual std::vector<ISaboteur*> getSaboteurs () = 0;
+    virtual void reset () = 0;
 };
 
-}
+} // namespace ember
 
 #endif

@@ -8,25 +8,25 @@
 namespace ember
 {
 
-    namespace math
-    {
+namespace math
+{
 
-        namespace random
-        {
+namespace random
+{
 
-            // Random INT of bitwidth
-            template <typename T>
-            T random(const size_t &bitwidth)
-                requires(std::integral<T>);
+// Random INT of bitwidth
+template <typename T>
+T random (const size_t& bitwidth)
+    requires (std::integral<T>);
 
-            // Uniform INT in a Range [start, stop)
-            template <typename T>
-            T uniform(const T &start, const T &stop)
-                requires(std::integral<T>);
+// Uniform INT in a Range [start, stop)
+template <typename T>
+T uniform (const T& start, const T& stop)
+    requires (std::integral<T>);
 
-        } // namespace rand
+} // namespace random
 
-    } // namespace math
+} // namespace math
 
 } // namespace ember
 

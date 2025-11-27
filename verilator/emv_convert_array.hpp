@@ -5,7 +5,7 @@
 
 namespace ember
 {
-    
+
 namespace verilator
 {
 
@@ -13,27 +13,28 @@ namespace verilator
 //* ========== NON EXTENDED - INTEGER ========== *//
 //
 
-template<typename vT, typename lT, size_t bitwidth>
-requires(std::is_integral<vT>::value && std::is_integral<lT>::value)
-constexpr void verilated2logic(const vT& vData, ember::array<lT>& lData, const size_t len)
+template <typename vT, typename lT, size_t bitwidth>
+    requires (std::is_integral<vT>::value && std::is_integral<lT>::value)
+constexpr void verilated2logic (const vT& vData, ember::array<lT>& lData, const size_t len)
 {
-    const lT m  = static_cast<lT>(1) << (bitwidth-1);
+    const lT m = static_cast<lT> (1) << (bitwidth - 1);
 
-    for (size_t i=0; i<len; i++)
+    for (size_t i = 0; i < len; i++)
     {
-        lData[i] = ((vData >> (i*bitwidth)) ^ m) - m;
+        lData[i] = ((vData >> (i * bitwidth)) ^ m) - m;
     }
 }
 
-template<typename lT, typename vT, size_t bitwidth>
-requires(std::is_integral<vT>::value && std::is_integral<lT>::value)
-constexpr void logic2verilated(const ember::array<lT>& lData, vT& vData, const size_t len)
+template <typename lT, typename vT, size_t bitwidth>
+    requires (std::is_integral<vT>::value && std::is_integral<lT>::value)
+constexpr void logic2verilated (const ember::array<lT>& lData, vT& vData, const size_t len)
 {
-    const std::int64_t m  = (1U << bitwidth)-1;
+    const std::int64_t m = (1U << bitwidth) - 1;
 
     vData = 0;
-    for(size_t i=0; i<len; i++) {
-        vData |= ( lData[i] & m) << (i * bitwidth);
+    for (size_t i = 0; i < len; i++)
+    {
+        vData |= (lData[i] & m) << (i * bitwidth);
     }
 }
 
@@ -45,7 +46,6 @@ constexpr void logic2verilated(const ember::array<lT>& lData, vT& vData, const s
 
 //* ========== EXTENDED - FLOAT ========== *//
 // TODO
-
 
 } // namespace verilator
 
