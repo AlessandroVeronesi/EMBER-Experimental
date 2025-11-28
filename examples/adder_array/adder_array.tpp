@@ -4,88 +4,73 @@
 //
 // === adder_array === //
 //
-template<typename T>
-const char* debug::adder_array<T>::id() {
-    return name.c_str();
-}
-
-template<typename T>
-void debug::adder_array<T>::reset()
+template <typename T> const char* debug::adder_array<T>::id ()
 {
-    outbuf->reset();
+    return name.c_str ();
 }
 
-template<typename T>
-std::vector<ember::ISaboteur*> debug::adder_array<T>::getSaboteurs()
+template <typename T> void debug::adder_array<T>::reset ()
+{
+    outbuf->reset ();
+}
+
+template <typename T> std::vector<ember::ISaboteur*> debug::adder_array<T>::getSaboteurs ()
 {
     std::vector<ember::ISaboteur*> regs;
-    regs.push_back(static_cast<ember::ISaboteur*>(outbuf));
+    regs.push_back (static_cast<ember::ISaboteur*> (outbuf));
     return regs;
 }
 
-template<typename T>
-void debug::adder_array<T>::update()
+template <typename T> void debug::adder_array<T>::update ()
 {
     // Submodules update
-    outbuf->update();
+    outbuf->update ();
 }
 
-template<typename T>
-void debug::adder_array<T>::eval()
+template <typename T> void debug::adder_array<T>::eval ()
 {
     // ALUs
-    for(size_t it=0; it<thpt; it++) {
-        aux[it] = A.read()[it] + B.read()[it];
+    for (size_t it = 0; it < thpt; it++)
+    {
+        aux[it] = A.read ()[it] + B.read ()[it];
     }
-    outbuf->din.write(aux);
+    outbuf->din.write (aux);
 }
 
-template<typename T>
-void debug::adder_array<T>::connect()
+template <typename T> void debug::adder_array<T>::connect ()
 {
     // Self Binded
-    A.bind();
-    B.bind();
-    outbuf->din.bind();
-    outbuf->dout.bind();
+    A.bind ();
+    B.bind ();
+    outbuf->din.bind ();
+    outbuf->dout.bind ();
 
     // Connections
-    C.bind(outbuf->dout);
+    C.bind (outbuf->dout);
 }
 
-template<typename T>
-void debug::adder_array<T>::connect(ember::port<T>* _A, ember::port<T>* _B)
+template <typename T> void debug::adder_array<T>::connect (ember::port<T>* _A, ember::port<T>* _B)
 {
     // Self Binded
-    outbuf->din.bind();
-    outbuf->dout.bind();
+    outbuf->din.bind ();
+    outbuf->dout.bind ();
 
     // Connections
-    A.bind(*_A);
-    B.bind(*_B);
-    C.bind(outbuf->dout);
+    A.bind (*_A);
+    B.bind (*_B);
+    C.bind (outbuf->dout);
 }
 
-template<typename T>
-debug::adder_array<T>::adder_array(
-    const size_t _thpt,
-    const size_t _inBwA,
-    const size_t _inBwB)
-    :   thpt(_thpt),
-        inBwA(_inBwA),
-        inBwB(_inBwB),
-        outBw(std::max(inBwA,inBwB)+1),
-        name("adder_array"),
-        aux(_thpt),
-        A("A", _thpt, inBwA),
-        B("B", _thpt, inBwB),
-        C("C", _thpt, outBw)
+template <typename T>
+debug::adder_array<T>::adder_array (const size_t _thpt, const size_t _inBwA, const size_t _inBwB)
+    : thpt (_thpt), inBwA (_inBwA), inBwB (_inBwB), outBw (std::max (inBwA, inBwB) + 1),
+      name ("adder_array"), aux (_thpt), A ("A", _thpt, inBwA), B ("B", _thpt, inBwB),
+      C ("C", _thpt, outBw)
 {
-    outbuf = new ember::saboteur::ff<ember::array<T> >("outbuf", thpt, outBw);
+    outbuf = new ember::saboteur::ff<ember::array<T>> ("outbuf", thpt, outBw);
 }
 
-template<typename T>
-debug::adder_array<T>::~adder_array()
+template <typename T> debug::adder_array<T>::~adder_array ()
 {
     delete outbuf;
 }

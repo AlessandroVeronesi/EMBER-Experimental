@@ -1,0 +1,22 @@
+# Default: auto-detect text files, normalize to LF
+* text=auto eol=lf
+
+# Force LF for all bash/shell scripts (important on Windows)
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+*.command text eol=lf
+
+# Make .gitignore and .gitattributes always LF as well
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Binary files (no EOL conversion)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.exe binary
+*.dll binary
