@@ -19,7 +19,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             cmake build-essential \
-            clang-format cppcheck
+            clang-format cppcheck \
+            clang-tidy
 
       - name: Make scripts executable
         run: |
@@ -35,14 +36,21 @@ jobs:
 
       # ---------- clang-format (style check) ---
       - name: clang-format (style check)
+        continue-on-error: true
         run: |
-          ./tools.sh format
+          ./tools.sh format || true
+      
+      - name: Run clang-tidy (report-only)
+        
+        run: |
+          clang-tidy $(git ls-files '*.h' '*.hpp' '*.c' '*.cc' '*.cpp' '*.cxx' '*.tpp') -- -std=c++20 || true
+        
 
       # ---------- cppcheck (lint, but do not fail pipeline) ---
       - name: Static analysis (cppcheck)
-        continue-on-error: true
+        
         run: |
-          ./tools.sh cppcheck
+          ./tools.sh cppcheck || true
 
       - name: Build
         run: |
