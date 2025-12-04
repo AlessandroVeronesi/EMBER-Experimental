@@ -1,3 +1,5 @@
+![CI (build,lint,test)] (https://github.com/AarifRahaman/EMBER-Exp/actions/workflows/ci.yml/badge.svg)
+
 <div align="center">
 <img src="doc/pictures/ember_banner_color.png"/>
 </div>
