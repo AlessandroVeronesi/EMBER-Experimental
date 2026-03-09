@@ -4,12 +4,12 @@
 #include "ember.hpp"
 #include "ember_saboteurs.hpp"
 
-namespace debug {
-
-template<typename T>
-class adder_array : public ember::IModule
+namespace debug
 {
-protected:
+
+template <typename T> class adder_array : public ember::IModule
+{
+  protected:
     const size_t thpt;
     const size_t inBwA;
     const size_t inBwB;
@@ -18,29 +18,28 @@ protected:
     ember::array<T> aux;
 
     // Internal Register
-    ember::saboteur::ff<ember::array<T> >* outbuf;
+    ember::saboteur::ff<ember::array<T>>* outbuf;
 
-public:
-
+  public:
     // IOs
-    ember::inPort<ember::array<T> > A, B;
-    ember::outPort<ember::array<T> > C;
+    ember::inPort<ember::array<T>> A, B;
+    ember::outPort<ember::array<T>> C;
 
-    void connect();
-    void connect(ember::port<T>* _A, ember::port<T>* _B);
+    void connect ();
+    void connect (ember::port<T>* _A, ember::port<T>* _B);
 
-    const char* id();
-    void reset();
-    void update();
-    void eval();
-    std::vector<ember::ISaboteur*> getSaboteurs();
-    
-    adder_array(const size_t _thpt, const size_t _inBwA, const size_t _inBwB);
+    const char* id ();
+    void reset ();
+    void update ();
+    void eval ();
+    std::vector<ember::ISaboteur*> getSaboteurs ();
+
+    adder_array (const size_t _thpt, const size_t _inBwA, const size_t _inBwB);
     // adder_array(const size_t _thpt, const size_t _inBwA, const size_t _inBwB, T* _A, T* _B);
-    virtual ~adder_array();
+    virtual ~adder_array ();
 };
 
-}
+} // namespace debug
 
 #include "adder_array.tpp"
 

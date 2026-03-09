@@ -1,0 +1,24 @@
+Checks: '-*,readability-identifier-naming, 
+  readability-line-length, modernize-use-auto,modernize-use-enum-class
+  modernize-use-nullptr,cppcoreguidelines-owning-memory'
+
+WarningsAsErrors: ''
+
+CheckOptions:
+  - { key: readability-identifier-naming.NamespaceCase,        value: lower_case }
+  - { key: readability-identifier-naming.ClassCase,            value: PascalCase }
+  - { key: readability-identifier-naming.StructCase,           value: PascalCase }
+  - { key: readability-identifier-naming.EnumCase,             value: PascalCase }
+  - { key: readability-identifier-naming.FunctionCase,         value: camelBack }
+  - { key: readability-identifier-naming.VariableCase,         value: lower_case }  #local / global / function-scope variables
+  - { key: readability-identifier-naming.MemberCase,           value: lower_case }  #class/struct data members
+  - { key: readability-identifier-naming.MemberPrefix,         value: 'm_' }
+  - { key: readability-identifier-naming.ConstantCase,         value: lower_case }
+  - { key: readability-identifier-naming.ConstantPrefix,       value: 'k_' }
+  - { key: readability-identifier-naming.MacroDefinitionCase,  value: UPPER_CASE }
+  - { key: readability-identifier-naming.TemplateParameterCase,value: camelBack }
+  - { Key: readability-line-length.LineLength,                 value: 150 }
+  - { key: readability-identifier-naming.GlobalPrefix,         value: g_ }
+  - { key: readability-identifier-naming.GlobalCase,           value: lower_case }
+  - { key: modernize-use-auto.MinTypeNameLength,               value: 10 }
+    

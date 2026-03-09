@@ -9,10 +9,10 @@
 #include "em_time.hpp"
 
 // Kernel
-#include "em_iobject.hpp"
 #include "em_imodule.hpp"
-#include "em_isaboteur.hpp"
+#include "em_iobject.hpp"
 #include "em_iport.hpp"
+#include "em_isaboteur.hpp"
 #include "em_port.hpp"
 
 // Faults

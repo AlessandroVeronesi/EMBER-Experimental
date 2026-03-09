@@ -1,0 +1,76 @@
+# Hybrid Modern C++ Style for Ember
+# Base: LLVM, then customized
+BasedOnStyle: LLVM
+Standard: c++20
+
+# --- Indentation & tabs ---
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never          # always spaces
+
+# --- Line length / wrapping ---
+ColumnLimit: 100       
+ReflowComments: true   # nicely rewraps comments
+
+# --- Braces (K&R / Attach style) ---
+BreakBeforeBraces: Attach      # void foo() { ... }
+BraceWrapping:
+  BeforeElse: false
+
+# --- Control of "short" things on one line ---
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: Never
+
+# --- Pointers & references ---
+PointerAlignment: Left         # int* x;  → "int *x;"
+DerivePointerAlignment: false
+ReferenceAlignment: Left
+
+# --- Switch / case formatting ---
+IndentCaseLabels: true
+
+
+# --- Namespaces ---
+NamespaceIndentation: None      # indent inside namespaces
+CompactNamespaces: false
+
+
+# --- Spaces around things ---
+SpaceAfterCStyleCast: false           #int x = (int)y;
+SpaceBeforeParens: ControlStatements    # if (x), while (y), but foo(x)
+SpacesInParentheses: false          
+SpaceAfterComma: true        
+MaxEmptyLinesToKeep: 2
+KeepEmptyLinesAtTheStartOfBlocks: false   
+InsertTrailingCommas: Wrapped 
+
+# --- Alignment niceness ---
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+AlignConsecutiveBitFields: Consecutive
+
+# --- Constructor initialization lists ---
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+AllowAllConstructorInitializersOnNextLine: false
+
+
+# --- Header Include Order
+SortIncludes: true
+IncludeBlocks: Preserve   # keeps your manual "own header" block first
+
+IncludeCategories:
+  # 2) Same project headers: "..."
+  - Regex: '^".*"$'
+    Priority: 2
+
+  # 3) Third-party: <fmt/core.h> (has a slash)
+  - Regex: '^<.+/.+>$'
+    Priority: 3
+
+  # 4) Standard library: <vector> (no slash)
+  - Regex: '^<[^/]+>$'
+    Priority: 4
+
+

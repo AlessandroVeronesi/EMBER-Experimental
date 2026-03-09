@@ -6,21 +6,18 @@
 namespace ember
 {
 
-template<typename T>
-class IPort : public IObject
+template <typename T> class IPort : public IObject
 {
-protected:
-    IPort() { }
-    ~IPort() { }
+  protected:
+    IPort () {}
+    ~IPort () {}
 
-public:
-
-    virtual void bind(IPort<T>& other) = 0;
-    virtual void write(const T& other) = 0;
-    virtual const T& read() const = 0;
+  public:
+    virtual void bind (IPort<T>& other) = 0;
+    virtual void write (const T& other) = 0;
+    virtual const T& read () const = 0;
 };
 
 } // namespace ember
-
 
 #endif
