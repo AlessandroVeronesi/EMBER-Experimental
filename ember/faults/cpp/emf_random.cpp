@@ -26,5 +26,6 @@ ember::ISaboteur* ember::fault::uniform (std::vector<ember::ISaboteur*> vec,
         sel -= vec[i]->locations (fModel);
     }
 
-    assert (!"-E(Out of Scope): during random uniform component selection");
+    assert(!"-E(Out of Scope): during random uniform component selection");
+    return nullptr;
 }
