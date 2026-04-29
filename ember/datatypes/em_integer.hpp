@@ -1,5 +1,4 @@
-#ifndef __EMBER_INTEGER_HPP__
-#define __EMBER_INTEGER_HPP__
+#pragma once
 
 #include <cstdint>
 #include <iostream>
@@ -23,4 +22,4 @@ using int64_t = std::int64_t;
 
 std::ostream& operator<< (std::ostream& os, ember::int8_t const& foo);
 
-#endif
+

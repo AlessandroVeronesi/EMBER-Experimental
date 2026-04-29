@@ -1,124 +1,107 @@
-#ifndef __EMBER_TIME_HPP__
-#define __EMBER_TIME_HPP__
+#pragma once
 
 #include <cassert>
 #include <cstring>
 #include <iostream>
 #include <type_traits>
+#include <cstdint>
+#include <string>
 
-namespace ember
-{
+namespace ember {
 
-template <class backend_t = long unsigned>
-    requires (std::is_integral<backend_t>::value)
+using time_backend_t = std::uint64_t;
+
 class time_t
 {
   protected:
-    backend_t _time;
+    time_backend_t _time;
     std::string _utime;
 
   public:
-    const backend_t getSimTime () const;
-    const char* getTimeUnit () const;
-    void reset ();
-    const time_t incr ();
+    const time_backend_t getSimTime() const;
+    const char* getTimeUnit() const;
+    void reset();
+    const time_t& incr();
 
     // Assignment Operators
-    time_t& operator= (time_t const& other);
+    time_t& operator=(time_t const& other);
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    time_t& operator= (T const other);
+    requires(std::is_convertible<T, time_backend_t>::value)
+    time_t& operator=(T const other);
 
     // Increment Operators
-    time_t operator+ (time_t const& other);
-    time_t& operator++ ();
-    time_t operator++ (int);
-    time_t& operator+= (time_t const& other);
+    
+    time_t operator+(time_t const& other);
+    time_t& operator++();
+    time_t operator++(int);
+    time_t& operator+=(time_t const& other);
+    
+    template <typename T>
+    requires(std::is_convertible<T, time_backend_t>::value)
+    time_t operator+(T const other);
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    time_t operator+ (T const other);
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    time_t& operator+= (T const other);
+    requires(std::is_convertible<T, time_backend_t>::value)
+    time_t& operator+=(T const other);
 
     // Decrement Operators
-    time_t operator- (time_t const& other);
-    time_t& operator-- ();
-    time_t operator-- (int);
-    time_t& operator-= (time_t const& other);
+    time_t operator-(time_t const& other);
+    time_t& operator--();
+    time_t operator--(int);
+    time_t& operator-=(time_t const& other);
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    time_t operator- (T const other);
+    requires(std::is_convertible<T, time_backend_t>::value)
+    time_t operator-(T const other);
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    time_t& operator-= (T const other);
+    requires(std::is_convertible<T, time_backend_t>::value)
+    time_t& operator-=(T const other);
 
     // Logical Operators
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator== (time_t<T> const& other) const;
+    
+    bool operator==(time_t const& other) const;
+    bool operator!=(time_t const& other) const;
+    bool operator< (time_t const& other) const;
+    bool operator<=(time_t const& other) const;
+    bool operator> (time_t const& other) const;
+    bool operator>=(time_t const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator!= (time_t<T> const& other) const;
+    requires(std::is_convertible<T, time_backend_t>::value)
+    bool operator==(T const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator< (time_t<T> const& other) const;
+    requires(std::is_convertible<T, time_backend_t>::value)
+    bool operator!=(T const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator<= (time_t<T> const& other) const;
+    requires(std::is_convertible<T, time_backend_t>::value)
+    bool operator<(T const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator> (time_t<T> const& other) const;
+    requires(std::is_convertible<T, time_backend_t>::value)
+    bool operator<=(T const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator>= (time_t<T> const& other) const;
+    requires(std::is_convertible<T, time_backend_t::value)
+    bool operator>(T const& other) const;
 
     template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator== (T const& other) const;
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator!= (T const& other) const;
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator< (T const& other) const;
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator<= (T const& other) const;
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator> (T const& other) const;
-
-    template <typename T>
-        requires (std::is_integral<T>::value)
-    bool operator>= (T const& other) const;
+    requires(std::is_convertible<T, time_backend_t>::value)
+    bool operator>=(T const& other) const;
 
     // CTOR
-    time_t ();
-    // FIXME: Difficult resolving constructor overloading
-    // time_t(const char* utime);
-    time_t (backend_t time);
-    time_t (backend_t time, const char* utime);
+    time_t();
+    time_t(time_backend_t time);
+    time_t(time_backend_t time, const char* utime);
 };
 
 } // namespace ember
 
-template <typename T> std::ostream& operator<< (std::ostream& os, ember::time_t<T> const& foo);
+ 
+std::ostream& operator<<(std::ostream& os, ember::time_t const& foo);
 
 #include "tpp/em_time.tpp"
 
-#endif

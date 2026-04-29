@@ -1,5 +1,5 @@
-#ifndef __ADDER_WREG_HPP__
-#define __ADDER_WREG_HPP__
+#ifndef ADDER_WREG_HPP
+#define ADDER_WREG_HPP
 
 #include "ember.hpp"
 #include "ember_saboteurs.hpp"

@@ -8,6 +8,8 @@ project(ember
 	LANGUAGES CXX
 	)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # CMake Options
 # option(DEBUG           "Add debug build options to all the targets"                              OFF)
 option(BUILD_EXAMPLES  "Build EMBER examples"                                                    OFF)
@@ -18,9 +20,9 @@ option(BUILD_SABOTEURS "Compile default saboteurs library"                      
 # Target
 add_library(ember STATIC)
 
-# C++ Standard
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 target_compile_features(ember PUBLIC cxx_std_20)
 
 # Compile-Time Options
