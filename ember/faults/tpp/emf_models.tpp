@@ -23,7 +23,7 @@ ember::fault::seu_t<T>::operator= (ember::fault::fault_t<ember::fault::model, T>
 }
 
 template <typename T>
-ember::fault::seu_t<T>::seu_t (const ember::time_t<T> time, ember::ISaboteur* location)
+ember::fault::seu_t<T>::seu_t (const ember::time::time_t time, ember::ISaboteur* location)
     : ember::fault::fault_t<ember::fault::model, T>::fault_t (ember::fault::model::seu, "seu", time,
                                                               location)
 {
@@ -57,7 +57,7 @@ ember::fault::sa0_t<T>::operator= (ember::fault::fault_t<ember::fault::model, T>
 }
 
 template <typename T>
-ember::fault::sa0_t<T>::sa0_t (const ember::time_t<T> time, ember::ISaboteur* location)
+ember::fault::sa0_t<T>::sa0_t (const ember::time::time_t time, ember::ISaboteur* location)
     : ember::fault::fault_t<ember::fault::model, T>::fault_t (ember::fault::model::sa0, "seu", time,
                                                               location)
 {
@@ -91,7 +91,7 @@ ember::fault::sa1_t<T>::operator= (ember::fault::fault_t<ember::fault::model, T>
 }
 
 template <typename T>
-ember::fault::sa1_t<T>::sa1_t (const ember::time_t<T> time, ember::ISaboteur* location)
+ember::fault::sa1_t<T>::sa1_t (const ember::time::time_t time, ember::ISaboteur* location)
     : ember::fault::fault_t<ember::fault::model, T>::fault_t (ember::fault::model::sa1, "sa1", time,
                                                               location)
 {

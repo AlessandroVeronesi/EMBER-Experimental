@@ -41,15 +41,9 @@ CompactNamespaces: false
 SpaceAfterCStyleCast: false           #int x = (int)y;
 SpaceBeforeParens: ControlStatements    # if (x), while (y), but foo(x)
 SpacesInParentheses: false          
-SpaceAfterComma: true        
 MaxEmptyLinesToKeep: 2
 KeepEmptyLinesAtTheStartOfBlocks: false   
-InsertTrailingCommas: Wrapped 
-
-# --- Alignment niceness ---
-AlignConsecutiveAssignments: Consecutive
-AlignConsecutiveDeclarations: Consecutive
-AlignConsecutiveBitFields: Consecutive
+InsertTrailingCommas: None 
 
 # --- Constructor initialization lists ---
 ConstructorInitializerAllOnOneLineOrOnePerLine: true

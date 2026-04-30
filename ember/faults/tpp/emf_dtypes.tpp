@@ -5,7 +5,7 @@
 // == FAULT_T == //
 //
 template <class model_t, typename T>
-const ember::time_t<T> ember::fault::fault_t<model_t, T>::time () const
+const ember::time::time_t ember::fault::fault_t<model_t, T>::time () const
 {
     return _itime;
 }
@@ -91,7 +91,7 @@ bool ember::fault::fault_t<model_t, T>::operator>= (
 
 template <class model_t, typename T>
 ember::fault::fault_t<model_t, T>::fault_t (const model_t fmodel, const char* model_str,
-                                            const ember::time_t<T> time, ember::ISaboteur* location)
+                                            const ember::time::time_t time, ember::ISaboteur* location)
     : _model (fmodel), _itime (time), _location (location), _name (model_str)
 {
 }

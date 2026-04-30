@@ -12,7 +12,7 @@ using test_t = ember::int8_t;
 
 int main (int argc, char* argv[])
 {
-    ember::time_t<> tick = 0;
+    ember::time::time_t tick = 0;
 
     ember::saboteur::dpsram<test_t> mem (DEPTH, WIDTH, BITWIDTH);
     mem.we.bind ();

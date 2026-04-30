@@ -21,11 +21,11 @@ template <class model_t, typename T = long unsigned> class fault_t
   protected:
     std::string _name;
     model_t _model;
-    time_t<T> _itime;
+    time::time_t _itime;
     ISaboteur* _location;
 
   public:
-    const time_t<T> time () const;
+    const time::time_t time () const;
     const model_t fmodel () const;
     ISaboteur* location () const;
     const char* id () const;
@@ -39,7 +39,7 @@ template <class model_t, typename T = long unsigned> class fault_t
     bool operator<= (const fault_t& other) const;
     bool operator>= (const fault_t& other) const;
 
-    fault_t (const model_t model, const char* model_str, const time_t<T> time, ISaboteur* location);
+    fault_t (const model_t model, const char* model_str, const time::time_t time, ISaboteur* location);
 };
 
 } // namespace fault
