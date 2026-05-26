@@ -19,6 +19,7 @@
 *ninja*
 !*CMakeLists.txt
 *.cmake
+!cmake/*.cmake
 *.profraw
 *.profdata
 coverage_report/
