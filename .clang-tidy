@@ -1,5 +1,5 @@
 Checks: '-*,readability-identifier-naming, 
-  readability-line-length, modernize-use-auto,modernize-use-enum-class
+  readability-line-length, modernize-use-auto,modernize-use-enum-class,
   modernize-use-nullptr,cppcoreguidelines-owning-memory, readability-*,bugprone-*,modernize-*'
 
 WarningsAsErrors: ''

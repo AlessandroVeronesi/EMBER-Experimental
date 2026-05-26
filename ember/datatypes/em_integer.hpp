@@ -3,8 +3,7 @@
 #include <cstdint>
 #include <iostream>
 
-namespace ember
-{
+namespace ember {
 
 // Unsigned
 using uint8_t = std::uint8_t;
@@ -20,6 +19,4 @@ using int64_t = std::int64_t;
 
 } // namespace ember
 
-std::ostream& operator<< (std::ostream& os, ember::int8_t const& foo);
-
-
+std::ostream& operator<<(std::ostream& os, ember::int8_t const& foo);

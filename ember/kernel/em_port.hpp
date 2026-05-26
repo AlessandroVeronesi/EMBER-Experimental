@@ -6,12 +6,10 @@
 
 #include "em_iport.hpp"
 
-namespace ember
-{
+namespace ember {
 
 // Bidirectional Port
-template <typename T> class Port : public IPort<T>
-{
+template <typename T> class Port : public IPort<T> {
   protected:
     bool isBinded;
     bool selfBinded;
@@ -20,22 +18,22 @@ template <typename T> class Port : public IPort<T>
     T* data;
 
   public:
-    const char* id ();
-    void bind (IPort<T>& other); // Bind to a different port
-    void bind ();                // For self binding
-    void write (const T& value); // write to port
-    const T& read () const;      // read from port
+    const char* id();
+    void bind(IPort<T>& other); // Bind to a different port
+    void bind();                // For self binding
+    void write(const T& value); // write to port
+    const T& read() const;      // read from port
 
-    Port (const char* portId);
-    template <typename... Args> Port (const char* portId, Args... _args);
-    Port (const std::string portId);
-    template <typename... Args> Port (const std::string portId, Args... _args);
-    ~Port ();
+    Port(const char* portId);
+    template <typename... Args> Port(const char* portId, Args... _args);
+    Port(const std::string portId);
+    template <typename... Args> Port(const std::string portId, Args... _args);
+    ~Port();
 
-    Port (const Port&) = delete;
-    Port& operator= (const Port&) = delete;
-    Port (Port&& other) noexcept;
-    Port& operator= (Port&& other) noexcept;
+    Port(const Port&) = delete;
+    Port& operator=(const Port&) = delete;
+    Port(Port&& other) noexcept;
+    Port& operator=(Port&& other) noexcept;
 };
 
 // Aliases

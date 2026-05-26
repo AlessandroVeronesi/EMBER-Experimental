@@ -6,14 +6,12 @@
 #include "em_isaboteur.hpp"
 #include "emf_baseline_dtypes.hpp"
 
-namespace ember
-{
+namespace ember {
 
-namespace fault
-{
+namespace fault {
 
 // Weighted Uniform Distribution over components size
-ISaboteur* uniform (std::vector<ISaboteur*> vec, const model& fModel);
+ISaboteur* uniform(std::vector<ISaboteur*> vec, const model& fModel);
 
 } // namespace fault
 

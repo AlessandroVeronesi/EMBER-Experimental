@@ -1,14 +1,14 @@
 #pragma once
 
-
 //
 // === ASSIGNMENT OPERATORS === //
 //
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value)
-    ember::time::time_t& ember::time::time_t::operator=(T const other) {
-    m_time = static_cast<backend_t>(other);
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value)
+    ember::sim::Tick& ember::sim::Tick::operator=(T const other) {
+    m_time = static_cast<ember::sim::backend_t>(other);
     return *this;
 }
 
@@ -17,17 +17,20 @@ requires(std::is_convertible<T, ember::time::backend_t>::value)
 //
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value)
-    ember::time::time_t ember::time::time_t::operator+(T const other) {
-    ember::time::time_t value(static_cast<backend_t>(other));
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value)
+    ember::sim::Tick ember::sim::Tick::operator+(T const other) {
+    ember::sim::Tick value(static_cast<ember::sim::backend_t>(other));
+
     return *this + value;
 }
 
-
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value)
-    ember::time::time_t& ember::time::time_t::operator+=(T const other) {
-    ember::time::time_t value(static_cast<backend_t>(other));
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value)
+    ember::sim::Tick& ember::sim::Tick::operator+=(T const other) {
+    ember::sim::Tick value(static_cast<ember::sim::backend_t>(other));
+
     return *this += value;
 }
 
@@ -36,17 +39,20 @@ requires(std::is_convertible<T, ember::time::backend_t>::value)
 //
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value)
-    ember::time::time_t ember::time::time_t::operator-(T const other) {
-    ember::time::time_t value(static_cast<backend_t>(other));
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value)
+    ember::sim::Tick ember::sim::Tick::operator-(T const other) {
+    ember::sim::Tick value(static_cast<ember::sim::backend_t>(other));
+
     return *this - value;
 }
 
-
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value)
-    ember::time::time_t& ember::time::time_t::operator-=(T const other) {
-    ember::time::time_t value(static_cast<backend_t>(other));
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value)
+    ember::sim::Tick& ember::sim::Tick::operator-=(T const other) {
+    ember::sim::Tick value(static_cast<ember::sim::backend_t>(other));
+
     return *this -= value;
 }
 
@@ -55,38 +61,43 @@ requires(std::is_convertible<T, ember::time::backend_t>::value)
 //
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::
-operator==(T const& other) const {
-    return (m_time == static_cast<backend_t>(other));
-}
 
-template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::
-operator!=(T const& other) const {
-    return (m_time != static_cast<backend_t>(other));
-}
-
-template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::operator<(
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator==(
     T const& other) const {
-    return (m_time < static_cast<backend_t>(other));
+    return (m_time == static_cast<ember::sim::backend_t>(other));
 }
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::
-operator<=(T const& other) const {
-    return (m_time <= static_cast<backend_t>(other));
-}
 
-
-template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::operator>(
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator!=(
     T const& other) const {
-    return (m_time > static_cast<backend_t>(other));
+    return (m_time != static_cast<ember::sim::backend_t>(other));
 }
 
 template <typename T>
-requires(std::is_convertible<T, ember::time::backend_t>::value) bool ember::time::time_t::
-operator>=(T const& other) const {
-    return (m_time >= static_cast<backend_t>(other));
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator<(
+    T const& other) const {
+    return (m_time < static_cast<ember::sim::backend_t>(other));
+}
+
+template <typename T>
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator<=(
+    T const& other) const {
+    return (m_time <= static_cast<ember::sim::backend_t>(other));
+}
+
+template <typename T>
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator>(
+    T const& other) const {
+    return (m_time > static_cast<ember::sim::backend_t>(other));
+}
+
+template <typename T>
+
+requires(std::is_convertible<T, ember::sim::backend_t>::value) bool ember::sim::Tick::operator>=(
+    T const& other) const {
+    return (m_time >= static_cast<ember::sim::backend_t>(other));
 }

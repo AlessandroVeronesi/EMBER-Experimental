@@ -1,28 +1,23 @@
 #include "em_time.hpp"
 
-
 //
-// === TIME_T MEMBERS === //
+// === Tick MEMBERS === //
 //
 
-
-const ember::time::backend_t ember::time::time_t::value() const {
-    return m_time;
-}
-
-void ember::time::time_t::set(time_t const& other) {
+void ember::sim::Tick::set(Tick const& other) {
     *this = other;
 }
 
-
-void ember::time::time_t::reset() {
-    m_time = static_cast<ember::time::backend_t>(0);
+const ember::sim::backend_t ember::sim::Tick::value() const {
+    return m_time;
 }
 
+void ember::sim::Tick::reset() {
+    m_time = static_cast<ember::sim::backend_t>(0);
+}
 
-const ember::time::time_t& ember::time::time_t::incr() {
-    m_time = m_time + static_cast<ember::time::backend_t>(1);
-
+const ember::sim::Tick& ember::sim::Tick::incr() {
+    m_time = m_time + static_cast<ember::sim::backend_t>(1);
 
 #if defined(DEBUG) || defined(VERBOSE)
     std::cout << "-------------------------------------------------------------------------------"
@@ -39,8 +34,7 @@ const ember::time::time_t& ember::time::time_t::incr() {
 // === ASSIGNMENT OPERATORS === //
 //
 
-ember::time::time_t&
-ember::time::time_t::operator=(ember::time::time_t const& other) {
+ember::sim::Tick& ember::sim::Tick::operator=(ember::sim::Tick const& other) {
     if (this == &other) {
         return *this;
     }
@@ -52,25 +46,23 @@ ember::time::time_t::operator=(ember::time::time_t const& other) {
 // === INCREMENT OPERATORS === //
 //
 
-ember::time::time_t
-ember::time::time_t::operator+(ember::time::time_t const& other) {
-    ember::time::time_t sum(m_time);
+ember::sim::Tick ember::sim::Tick::operator+(ember::sim::Tick const& other) {
+    ember::sim::Tick sum(m_time);
     sum = m_time + other.value();
     return sum;
 }
 
-ember::time::time_t& ember::time::time_t::operator++() {
+ember::sim::Tick& ember::sim::Tick::operator++() {
     this->incr();
     return *this;
 }
 
-ember::time::time_t ember::time::time_t::operator++(int) {
+ember::sim::Tick ember::sim::Tick::operator++(int) {
     this->incr();
     return *this;
 }
 
-ember::time::time_t&
-ember::time::time_t::operator+=(ember::time::time_t const& other) {
+ember::sim::Tick& ember::sim::Tick::operator+=(ember::sim::Tick const& other) {
     *this = m_time + other.value();
     return *this;
 }
@@ -79,27 +71,23 @@ ember::time::time_t::operator+=(ember::time::time_t const& other) {
 // === DECREMENT OPERATORS === //
 //
 
-ember::time::time_t
-ember::time::time_t::operator-(ember::time::time_t const& other) {
-    ember::time::time_t sub(m_time);
+ember::sim::Tick ember::sim::Tick::operator-(ember::sim::Tick const& other) {
+    ember::sim::Tick sub(m_time);
     sub = m_time - other.value();
     return sub;
 }
 
-
-ember::time::time_t& ember::time::time_t::operator--() {
+ember::sim::Tick& ember::sim::Tick::operator--() {
     m_time = m_time - static_cast<backend_t>(1);
     return *this;
 }
 
-
-ember::time::time_t ember::time::time_t::operator--(int) {
+ember::sim::Tick ember::sim::Tick::operator--(int) {
     m_time = m_time - static_cast<backend_t>(1);
     return *this;
 }
 
-ember::time::time_t&
-ember::time::time_t::operator-=(ember::time::time_t const& other) {
+ember::sim::Tick& ember::sim::Tick::operator-=(ember::sim::Tick const& other) {
     *this = m_time - other.value();
     return *this;
 }
@@ -108,43 +96,49 @@ ember::time::time_t::operator-=(ember::time::time_t const& other) {
 // === LOGICAL OPERATORS === //
 //
 
-bool ember::time::time_t::operator==(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator==(ember::sim::Tick const& other) const {
     return (m_time == other.value());
 }
 
-bool ember::time::time_t::operator!=(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator!=(ember::sim::Tick const& other) const {
     return (m_time != other.value());
 }
 
-bool ember::time::time_t::operator<(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator<(ember::sim::Tick const& other) const {
     return (m_time < other.value());
 }
 
-bool ember::time::time_t::operator<=(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator<=(ember::sim::Tick const& other) const {
     return (m_time <= other.value());
 }
 
-bool ember::time::time_t::operator>(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator>(ember::sim::Tick const& other) const {
     return (m_time > other.value());
 }
 
-bool ember::time::time_t::operator>=(ember::time::time_t const& other) const {
+bool ember::sim::Tick::operator>=(ember::sim::Tick const& other) const {
     return (m_time >= other.value());
 }
 
 //
 // === CTOR === //
 //
-ember::time::time_t::time_t() : m_time(0) {}
 
-ember::time::time_t::time_t(backend_t time) : m_time(time) {}
+ember::sim::Tick::Tick() : m_time(0) {}
 
-ember::time::time_t::time_t(backend_t time, const char* utime) : m_time(time) {}
+ember::sim::Tick::Tick(backend_t time) : m_time(time) {}
+
+ember::sim::Tick::Tick(backend_t time, const char* utime) : m_time(time) {}
+
+ember::sim::Tick::Tick(const ember::sim::Tick& other) {
+    m_time = other.m_time;
+}
 
 //
 // === OSTREAM === //
 //
-std::ostream& operator<<(std::ostream& os, ember::time::time_t const& foo) {
-    os << foo.value() << " " << ember::U_TIME << std::flush;
+
+std::ostream& operator<<(std::ostream& os, ember::sim::Tick const& foo) {
+    os << foo.value() << " " << ember::sim::U_TIME << std::flush;
     return os;
 }

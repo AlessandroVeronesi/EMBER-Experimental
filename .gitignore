@@ -19,6 +19,14 @@
 *ninja*
 !*CMakeLists.txt
 *.cmake
+*.profraw
+*.profdata
+coverage_report/
+coverage/
+
+# Temporary Folders
+
+build/
 
 # Temporary Directories
 *_
@@ -31,6 +39,7 @@ build*/
 out*/
 exports/
 .DS_Store
+third_party/Catch2/
 
 # VScode Files
 .vscode

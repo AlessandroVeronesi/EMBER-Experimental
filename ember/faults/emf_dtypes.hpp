@@ -7,39 +7,36 @@
 #include "em_isaboteur.hpp"
 #include "em_time.hpp"
 
-namespace ember
-{
+namespace ember {
 
-namespace fault
-{
+namespace fault {
 
 //
 // == Parental Fault Class == //
 //
-template <class model_t, typename T = long unsigned> class fault_t
-{
+template <class model_t, typename T = long unsigned> class fault_t {
   protected:
     std::string _name;
     model_t _model;
-    time::time_t _itime;
+    sim::Tick _itime;
     ISaboteur* _location;
 
   public:
-    const time::time_t time () const;
-    const model_t fmodel () const;
-    ISaboteur* location () const;
-    const char* id () const;
-    const char* repr () const;
+    const sim::Tick time() const;
+    const model_t fmodel() const;
+    ISaboteur* location() const;
+    const char* id() const;
+    const char* repr() const;
 
-    fault_t& operator= (const fault_t& other);
+    fault_t& operator=(const fault_t& other);
 
-    bool operator== (const fault_t& other) const;
-    bool operator< (const fault_t& other) const;
-    bool operator> (const fault_t& other) const;
-    bool operator<= (const fault_t& other) const;
-    bool operator>= (const fault_t& other) const;
+    bool operator==(const fault_t& other) const;
+    bool operator<(const fault_t& other) const;
+    bool operator>(const fault_t& other) const;
+    bool operator<=(const fault_t& other) const;
+    bool operator>=(const fault_t& other) const;
 
-    fault_t (const model_t model, const char* model_str, const time::time_t time, ISaboteur* location);
+    fault_t(const model_t model, const char* model_str, const sim::Tick time, ISaboteur* location);
 };
 
 } // namespace fault
@@ -48,11 +45,10 @@ template <class model_t, typename T = long unsigned> class fault_t
 
 // Stream Out ember::fault::fault_t
 template <class model_t, typename T>
-std::ostream& operator<< (std::ostream& os, const ember::fault::fault_t<model_t, T>& other)
-{
-    os << "(" << other.location ()->id ();
-    os << ", " << other.id ();
-    os << ", " << other.time () << ")" << std::flush;
+std::ostream& operator<<(std::ostream& os, const ember::fault::fault_t<model_t, T>& other) {
+    os << "(" << other.location()->id();
+    os << ", " << other.id();
+    os << ", " << other.time() << ")" << std::flush;
     return os;
 }
 

@@ -9,62 +9,65 @@
 
 namespace ember {
 
-inline constexpr std::string_view U_TIME = "clk(s)";
+namespace sim {
 
-namespace time {
+inline constexpr std::string_view U_TIME = "clk(s)";
 
 using backend_t = std::uint64_t;
 
-class time_t {
+class Tick {
   protected:
     backend_t m_time;
 
-
   public:
     const backend_t value() const;
-    void set(time_t const& other);
+
+    void set(Tick const& other);
+
     void reset();
-    const time_t& incr();
+
+    const Tick& incr();
 
     // Assignment Operators
-    time_t& operator=(time_t const& other);
+
+    Tick& operator=(Tick const& other);
 
     template <typename T>
-    requires(std::is_convertible<T, backend_t>::value) time_t& operator=(T const other);
+    requires(std::is_convertible<T, backend_t>::value) Tick& operator=(T const other);
 
     // Increment Operators
 
-    time_t operator+(time_t const& other);
-    time_t& operator++();
-    time_t operator++(int);
-    time_t& operator+=(time_t const& other);
+    Tick operator+(Tick const& other);
+    Tick& operator++();
+    Tick operator++(int);
+    Tick& operator+=(Tick const& other);
 
     template <typename T>
-    requires(std::is_convertible<T, backend_t>::value) time_t operator+(T const other);
+    requires(std::is_convertible<T, backend_t>::value) Tick operator+(T const other);
 
     template <typename T>
-    requires(std::is_convertible<T, backend_t>::value) time_t& operator+=(T const other);
+    requires(std::is_convertible<T, backend_t>::value) Tick& operator+=(T const other);
 
     // Decrement Operators
-    time_t operator-(time_t const& other);
-    time_t& operator--();
-    time_t operator--(int);
-    time_t& operator-=(time_t const& other);
+    Tick operator-(Tick const& other);
+    Tick& operator--();
+    Tick operator--(int);
+    Tick& operator-=(Tick const& other);
 
     template <typename T>
-    requires(std::is_convertible<T, backend_t>::value) time_t operator-(T const other);
+    requires(std::is_convertible<T, backend_t>::value) Tick operator-(T const other);
 
     template <typename T>
-    requires(std::is_convertible<T, backend_t>::value) time_t& operator-=(T const other);
+    requires(std::is_convertible<T, backend_t>::value) Tick& operator-=(T const other);
 
     // Logical Operators
 
-    bool operator==(time_t const& other) const;
-    bool operator!=(time_t const& other) const;
-    bool operator<(time_t const& other) const;
-    bool operator<=(time_t const& other) const;
-    bool operator>(time_t const& other) const;
-    bool operator>=(time_t const& other) const;
+    bool operator==(Tick const& other) const;
+    bool operator!=(Tick const& other) const;
+    bool operator<(Tick const& other) const;
+    bool operator<=(Tick const& other) const;
+    bool operator>(Tick const& other) const;
+    bool operator>=(Tick const& other) const;
 
     template <typename T>
     requires(std::is_convertible<T, backend_t>::value) bool operator==(T const& other) const;
@@ -85,15 +88,15 @@ class time_t {
     requires(std::is_convertible<T, backend_t>::value) bool operator>=(T const& other) const;
 
     // CTOR
-    time_t();
-    time_t(backend_t time);
-    time_t(backend_t time, const char* utime);
+    Tick();
+    Tick(backend_t time);
+    Tick(backend_t time, const char* utime);
+    Tick(const Tick& other);
 };
 
-} // namespace time
+} // namespace sim
 } // namespace ember
 
-
-std::ostream& operator<<(std::ostream& os, ember::time::time_t const& foo);
+std::ostream& operator<<(std::ostream& os, ember::sim::Tick const& foo);
 
 #include "tpp/em_time.tpp"
