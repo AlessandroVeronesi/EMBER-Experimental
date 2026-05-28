@@ -1,5 +1,7 @@
 [![Ember CI (build, lint, test)](https://github.com/AarifRahaman/EMBER-Exp/actions/workflows/ci.yml/badge.svg)](https://github.com/AarifRahaman/EMBER-Exp/actions/workflows/ci.yml)
 
+[![Coverage](https://github.com/AarifRahaman/EMBER-Exp/actions/workflows/coverage.yml/badge.svg?branch=development)](https://github.com/AarifRahaman/EMBER-Exp/actions/workflows/coverage.yml)
+
 <div align="center">
 <img src="doc/pictures/ember_banner_color.png"/>
 </div>
