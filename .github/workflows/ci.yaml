@@ -26,7 +26,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             cmake \
-            build essential \
+            build-essential \
             clang-format \
             cppcheck \
             clang-tidy
