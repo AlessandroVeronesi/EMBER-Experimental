@@ -99,4 +99,4 @@ class Tick {
 
 std::ostream& operator<<(std::ostream& os, ember::sim::Tick const& foo);
 
-#include "tpp/em_time.tpp"
+#include "tpp/em_tick.tpp"

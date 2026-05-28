@@ -2,7 +2,7 @@
 #define __EMBER_FAULT_MODELS_HPP__
 
 #include "em_isaboteur.hpp"
-#include "em_time.hpp"
+#include "em_tick.hpp"
 
 namespace ember {
 

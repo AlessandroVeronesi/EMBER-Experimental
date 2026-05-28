@@ -6,7 +6,7 @@
 #include "em_math.hpp"
 #include "em_random.hpp"
 #include "em_string.hpp"
-#include "em_time.hpp"
+#include "em_tick.hpp"
 
 // Kernel
 #include "em_imodule.hpp"

@@ -40,7 +40,6 @@ build*/
 out*/
 exports/
 .DS_Store
-third_party/Catch2/
 
 # VScode Files
 .vscode

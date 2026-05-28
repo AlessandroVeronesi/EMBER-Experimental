@@ -1,10 +1,13 @@
-name: CI (build, lint, test)
+name: Ember CI (build, lint, test)
 
 on:
-  push:
-    branches: [ main ]
+  
   pull_request:
     branches: [ main ]
+  
+  workflow_dispatch:
+
+
 
 jobs:
   build-lint-test:
@@ -13,44 +16,53 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Install dependencies (CMake, compiler, lint tools)
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            cmake build-essential \
-            clang-format cppcheck \
+            cmake \
+            build essential \
+            clang-format \
+            cppcheck \
             clang-tidy
 
       - name: Make scripts executable
         run: |
-          chmod +x ./tools.sh || true
+          chmod +x ./tools.sh
+          chmod +x ./scripts/*.sh
+          chmod +x ./tools/coverage/*.sh
 
 
-      - name: Configure (CMake)
+      - name: Configure CMake
         run: |
-          mkdir -p build
           cmake -S . -B build \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+          -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DBUILD_TESTS=ON \
+          -DBUILD_EXAMPLES=OFF
 
-      # ---------- clang-format (style check) ---
+
       - name: clang-format (style check)
         continue-on-error: true
         run: |
-          ./tools.sh format || true
+          ./tools.sh format
       
-      - name: Run clang-tidy (report-only)
-        
+      - name: clang-tidy check
+        continue-on-error: true
         run: |
-          clang-tidy $(git ls-files '*.h' '*.hpp' '*.c' '*.cc' '*.cpp' '*.cxx' '*.tpp') -- -std=c++20 || true
+          clang-tidy \
+          -p build \
+          $(git ls-files '*.h' '*.hpp' '*.c' '*.cc' '*.cpp' '*.cxx' '*.tpp')
         
 
-      # ---------- cppcheck (lint, but do not fail pipeline) ---
-      - name: Static analysis (cppcheck)
+      - name: Cpp-check
+        continue-on-error: true
         
         run: |
-          ./tools.sh cppcheck || true
+          ./tools.sh cppcheck
 
       - name: Build
         run: |
@@ -58,10 +70,9 @@ jobs:
 
       - name: Run tests (CTest)
         run: |
-          cd build
-          ctest --output-on-failure
+          ctest --test-dir build --output-on-failure
 
-      - name: Deploy
+      - name: CI Finished
         run: |
-          echo "✅ All checks passed. Deploying..."
-          # your deploy commands go here
+          echo "✅ Build and tests passed."
+          
