@@ -21,10 +21,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y \
-        cmake \
-        clang \
-        llvm \
-        build-essential
+          cmake \
+          clang \
+          llvm \
+          build-essential
 
     - name: Make scripts executable
       run: |
