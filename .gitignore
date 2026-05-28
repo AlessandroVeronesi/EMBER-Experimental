@@ -24,6 +24,8 @@
 *.profdata
 coverage_report/
 coverage/
+!tools/coverage/
+!tools/coverage/*.sh
 
 # Temporary Folders
 
