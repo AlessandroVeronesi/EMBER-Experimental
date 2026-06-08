@@ -35,7 +35,7 @@ int main (int argc, char* argv[])
 
     dut = new debug::adder_wreg<test_t> ("ADD", BITWIDTH, BITWIDTH); // Create DUT
     dut->connect ();
-    ember::time_t<long unsigned> dut_delay = 1;                    // Expected delay
+    ember::time::time_t dut_delay = 1;                    // Expected delay
     std::vector<ember::ISaboteur*> reglist = dut->getSaboteurs (); // Get DUT saboteurs
 
     // Testbench settings
@@ -67,9 +67,9 @@ int main (int argc, char* argv[])
 
         for (size_t fiter = 0; fiter < FAULTNUM; fiter++)
         {
-            ember::time_t<long unsigned> itime =
+            ember::time::time_t itime =
                 static_cast<long unsigned> (ember::math::random::uniform (
-                    int (dut_delay.getSimTime () + 1), int (SIMTIME - 1)));
+                    int (dut_delay.value () + 1), int (SIMTIME - 1)));
             size_t pos = ember::math::random::uniform (
                 (size_t)0, reglist.size ()); // ember rand int uniform is in [start, end)
             ember::ISaboteur* loc = reglist[pos];
@@ -82,7 +82,7 @@ int main (int argc, char* argv[])
         seulist.print ();
 
         // Simulation Routine
-        for (ember::time_t<long unsigned> tick = 0; tick < SIMTIME; tick++)
+        for (ember::time::time_t tick = 0; tick < SIMTIME; tick++)
         {
 
             if (!seulist.empty ())

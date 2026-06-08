@@ -22,7 +22,7 @@ using test_t = ember::int32_t;
 int main (int argc, char* argv[])
 {
     debug::adder_array<test_t>* dut;
-    const ember::time_t<long unsigned> delay = 1;
+    const ember::time::time_t delay = 1;
     ember::array<test_t> input_a (ALUNUM);
     ember::array<test_t> input_b (ALUNUM);
     ember::array<test_t> output_c (ALUNUM);
@@ -60,9 +60,9 @@ int main (int argc, char* argv[])
         {
             for (size_t fiter = 0; fiter < FAULTNUM; fiter++)
             {
-                ember::time_t<long unsigned> itime =
+                ember::time::time_t itime =
                     static_cast<long unsigned> (ember::math::random::uniform (
-                        static_cast<long unsigned> (delay.getSimTime () + 1),
+                        static_cast<long unsigned> (delay.value () + 1),
                         static_cast<long unsigned> (SIMTIME - 1)));
                 size_t pos = ember::math::random::uniform ((size_t)0, reglist.size () - 1);
                 ember::ISaboteur* loc = reglist[pos];
@@ -76,7 +76,7 @@ int main (int argc, char* argv[])
         {
             for (size_t fiter = 0; fiter < FAULTNUM; fiter++)
             {
-                ember::time_t<long unsigned> itime = static_cast<long unsigned> (0);
+                ember::time::time_t itime = static_cast<long unsigned> (0);
                 size_t pos = ember::math::random::uniform ((size_t)0, reglist.size () - 1);
                 ember::ISaboteur* loc = reglist[pos];
                 ember::fault::sa0_t _sa0 (itime, loc);
@@ -89,7 +89,7 @@ int main (int argc, char* argv[])
         {
             for (size_t fiter = 0; fiter < FAULTNUM; fiter++)
             {
-                ember::time_t<long unsigned> itime = static_cast<long unsigned> (0);
+                ember::time::time_t itime = static_cast<long unsigned> (0);
                 size_t pos = ember::math::random::uniform ((size_t)0, reglist.size () - 1);
                 ember::ISaboteur* loc = reglist[pos];
                 ember::fault::sa1_t _sa1 (itime, loc);
@@ -106,7 +106,7 @@ int main (int argc, char* argv[])
         sa1list.print ();
 
         // Simulation
-        for (ember::time_t<long unsigned> tick = 0; tick < SIMTIME; tick++)
+        for (ember::time::time_t tick = 0; tick < SIMTIME; tick++)
         {
 
             if (!seulist.empty ())

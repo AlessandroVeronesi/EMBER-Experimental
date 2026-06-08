@@ -1,11 +1,9 @@
-#ifndef __EMBER_INTEGER_HPP__
-#define __EMBER_INTEGER_HPP__
+#pragma once
 
 #include <cstdint>
 #include <iostream>
 
-namespace ember
-{
+namespace ember {
 
 // Unsigned
 using uint8_t = std::uint8_t;
@@ -21,6 +19,4 @@ using int64_t = std::int64_t;
 
 } // namespace ember
 
-std::ostream& operator<< (std::ostream& os, ember::int8_t const& foo);
-
-#endif
+std::ostream& operator<<(std::ostream& os, ember::int8_t const& foo);

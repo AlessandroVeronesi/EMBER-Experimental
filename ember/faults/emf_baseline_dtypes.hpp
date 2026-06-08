@@ -5,20 +5,17 @@
 #include <string>
 
 #include "em_isaboteur.hpp"
-#include "em_time.hpp"
+#include "em_tick.hpp"
 #include "em_types.hpp"
 
-namespace ember
-{
+namespace ember {
 
-namespace fault
-{
+namespace fault {
 
 //
 // == Baseline Fault Models == //
 //
-enum model
-{
+enum model {
     seu, // Single-Event Upset (SEU)
     sa1, // Stuck-At '1' (SA1)
     sa0  // Stuck-At '0' (SA0)

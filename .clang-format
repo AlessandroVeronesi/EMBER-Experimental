@@ -12,10 +12,14 @@ UseTab: Never          # always spaces
 ColumnLimit: 100       
 ReflowComments: true   # nicely rewraps comments
 
+MaxEmptyLinesToKeep: 1
+SeparateDefinitionBlocks: Always
+
 # --- Braces (K&R / Attach style) ---
 BreakBeforeBraces: Attach      # void foo() { ... }
 BraceWrapping:
   BeforeElse: false
+
 
 # --- Control of "short" things on one line ---
 AllowShortIfStatementsOnASingleLine: false
@@ -24,7 +28,7 @@ AllowShortFunctionsOnASingleLine: Empty
 AllowShortBlocksOnASingleLine: Never
 
 # --- Pointers & references ---
-PointerAlignment: Left         # int* x;  → "int *x;"
+PointerAlignment: Left         
 DerivePointerAlignment: false
 ReferenceAlignment: Left
 
@@ -33,7 +37,7 @@ IndentCaseLabels: true
 
 
 # --- Namespaces ---
-NamespaceIndentation: None      # indent inside namespaces
+NamespaceIndentation: None     
 CompactNamespaces: false
 
 
@@ -41,15 +45,8 @@ CompactNamespaces: false
 SpaceAfterCStyleCast: false           #int x = (int)y;
 SpaceBeforeParens: ControlStatements    # if (x), while (y), but foo(x)
 SpacesInParentheses: false          
-SpaceAfterComma: true        
-MaxEmptyLinesToKeep: 2
 KeepEmptyLinesAtTheStartOfBlocks: false   
-InsertTrailingCommas: Wrapped 
-
-# --- Alignment niceness ---
-AlignConsecutiveAssignments: Consecutive
-AlignConsecutiveDeclarations: Consecutive
-AlignConsecutiveBitFields: Consecutive
+InsertTrailingCommas: None 
 
 # --- Constructor initialization lists ---
 ConstructorInitializerAllOnOneLineOrOnePerLine: true
