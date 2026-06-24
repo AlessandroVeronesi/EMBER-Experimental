@@ -19,17 +19,6 @@
 *ninja*
 !*CMakeLists.txt
 *.cmake
-!cmake/*.cmake
-*.profraw
-*.profdata
-coverage_report/
-coverage/
-!tools/coverage/
-!tools/coverage/*.sh
-
-# Temporary Folders
-
-build/
 
 # Temporary Directories
 *_
